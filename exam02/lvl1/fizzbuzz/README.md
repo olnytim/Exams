@@ -1,7 +1,9 @@
 ## Subject
 
 Assignment name  : fizzbuzz
+
 Expected files   : fizzbuzz.c
+
 Allowed functions: write
 --------------------------------------------------------------------------------
 
@@ -17,24 +19,45 @@ If the number is both a multiple of 3 and a multiple of 5, it prints 'fizzbuzz' 
 Example:
 
 $>./fizzbuzz
+
 1
+
 2
+
 fizz
+
 4
+
 buzz
+
 fizz
+
 7
+
 8
+
 fizz
+
 buzz
+
 11
+
 fizz
+
 13
+
 14
+
 fizzbuzz
+
 [...]
+
 97
+
 98
+
 fizz
+
 buzz
+
 $>
