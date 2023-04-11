@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    *._           _.*   @   */
-/*   ft_putstr.c                                        |\  \\_//  /|     #   */
+/*   ft_strlen.c                                        |\  \\_//  /|     #   */
 /*                                                      \/         \/     $   */
 /*   By: olnytim <yearagotomorrow@gmail.com>           _|_    V  V  |_    %   */
 /*                                                  *=.    =  _*  =   .=* ^   */
-/*   Created: 2023/04/11 17:06:50 by olnytim           \= ___________=/   &   */
-/*   Updated: 2023/04/11 18:51:44 by olnytim                /     \       *   */
+/*   Created: 2023/04/11 18:45:44 by olnytim           \= ___________=/   &   */
+/*   Updated: 2023/04/11 18:48:37 by olnytim                /     \       *   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putstr(char *str)
+int	ft_strlen(char *str)
 {
-	while (*str)
-		write(1, str++, 1);
+	int	counter;
+
+	counter = 0;
+	while (str[counter])
+		counter++;
+	return (counter);
 }
