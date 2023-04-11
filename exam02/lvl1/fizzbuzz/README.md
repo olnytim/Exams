@@ -5,6 +5,7 @@ Assignment name  : fizzbuzz
 Expected files   : fizzbuzz.c
 
 Allowed functions: write
+
 --------------------------------------------------------------------------------
 
 Write a program that prints the numbers from 1 to 100, each separated by a

@@ -6,7 +6,7 @@
 /*   By: olnytim <yearagotomorrow@gmail.com>           _|_    V  V  |_    %   */
 /*                                                  *=.    =  _*  =   .=* ^   */
 /*   Created: 2023/04/04 18:43:00 by olnytim           \= ___________=/   &   */
-/*   Updated: 2023/04/04 18:56:53 by olnytim                /     \       *   */
+/*   Updated: 2023/04/11 18:00:40 by olnytim                /     \       *   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	first_word(char *str)
 {
-	while (*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t' || *str == '\f' || *str == '\r')
+	while (*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t'
+		|| *str == '\f' || *str == '\r')
 		str++;
-	while (!(*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t' || *str == '\f' || *str == '\r'))
+	while (!(*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t'
+			||*str == '\f' || *str == '\r'))
 		write(1, str++, 1);
 }
 
