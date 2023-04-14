@@ -12,4 +12,6 @@ Reproduce exactly the behavior of the function strcspn
 The function should be prototyped as follows:
 
 size_t	ft_strcspn(const char *s, const char *reject);
+
+size_t	ft_strspn(const char *s, const char *reject);
 `````
