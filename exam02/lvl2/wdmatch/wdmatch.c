@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   wdmatch.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 21:58:43 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/04/18 14:06:22 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/04/18 17:45:52 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/04/18 17:56:23 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strchr(char *str, int c)
+void	wdmatch(char *str, char *check)
 {
-	while (*str)
+	int	i = 0;
+	int length = 0;
+
+	while (str[length])
+		++length;
+	while (*check)
 	{
-		if (*str == c)
-			return (str);
-		++str;
+		if (*check == str[i])
+			++i;
+		check++;
 	}
-	return (0);
+	if (length == i)
+		while (*str)
+			write(1, str++, 1);
 }
 
-size_t	ft_strspn(const char *str, const char *accept)
+int	main(int ac, char **av)
 {
-	size_t	i = 0;
-
-	while (str[i])
-	{
-		if (ft_strchr(accept, str[i]) == 0)
-			break;
-		++i;
-	}
-	return (i);
+	if (ac == 3)
+		wdmatch(av[1], av[2]);
+	write(1, "\n", 1);
+	return (0);
 }

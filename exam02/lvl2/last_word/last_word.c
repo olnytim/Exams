@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   last_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 21:58:43 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/04/18 14:06:22 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/04/18 14:39:21 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/04/18 14:50:22 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strchr(char *str, int c)
+void	last(char *str)
 {
-	while (*str)
-	{
-		if (*str == c)
-			return (str);
-		++str;
-	}
-	return (0);
-}
+	int	i = 0;
+	int j = 0;
 
-size_t	ft_strspn(const char *str, const char *accept)
-{
-	size_t	i = 0;
-
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+		++i;
 	while (str[i])
 	{
-		if (ft_strchr(accept, str[i]) == 0)
-			break;
+		if ((str[i] == ' ' || str[i] == '\n' || str[i] == '\t') && (str[i + 1] >= 32 && str[i + 1] <= 126))
+			j = i + 1;
 		++i;
 	}
-	return (i);
+	while (str[j] >= 32 && str[j] <= 126)
+		write(1, &str[j++], 1);
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc == 2)
+		last(argv[1]);
+	write(1, "\n", 1);
+	return (0);
 }

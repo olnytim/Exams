@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   inter.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 21:58:43 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/04/18 14:06:22 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/04/16 12:42:11 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/04/18 14:19:08 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strchr(char *str, int c)
+int	inter(char *str, char c, int len)
 {
-	while (*str)
-	{
-		if (*str == c)
-			return (str);
-		++str;
-	}
+	int	i = 0;
+
+	while (str[i] && (i < len || len == -1))
+		if (str[i++] == c)
+			return (1);
 	return (0);
 }
 
-size_t	ft_strspn(const char *str, const char *accept)
+int	main(int ac, char **av)
 {
-	size_t	i = 0;
+	int	i;
 
-	while (str[i])
+	if (ac == 3)
 	{
-		if (ft_strchr(accept, str[i]) == 0)
-			break;
-		++i;
+		i = 0;
+		while (av[1][i])
+		{
+			if (!inter(av[1], av[1][i], i) || inter(av[2], av[2][i], -1))
+				write(1, &av[1][i++], 1);
+		}
 	}
-	return (i);
+	write(1, "\n", 1);
+	return (0);
 }

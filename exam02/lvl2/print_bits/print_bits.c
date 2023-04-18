@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 21:58:43 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/04/18 14:06:22 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/04/18 15:05:40 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/04/18 16:59:19 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strchr(char *str, int c)
+void	print_bits(unsigned char octet)
 {
-	while (*str)
-	{
-		if (*str == c)
-			return (str);
-		++str;
-	}
-	return (0);
-}
+	int	i = 8;
+	unsigned char	bit;
 
-size_t	ft_strspn(const char *str, const char *accept)
-{
-	size_t	i = 0;
-
-	while (str[i])
+	while (i--)
 	{
-		if (ft_strchr(accept, str[i]) == 0)
-			break;
-		++i;
+		bit = (octet >> i & 1) + '0';
+		write(1, &bit, 1);
 	}
-	return (i);
 }

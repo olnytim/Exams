@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   snake_to_camel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 21:58:43 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/04/18 14:06:22 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/04/18 17:00:07 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/04/18 17:17:44 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
 
-char	*ft_strchr(char *str, int c)
+void	snake(char *str)
 {
+	int	i = 0;
+	i = 0;
 	while (*str)
 	{
-		if (*str == c)
-			return (str);
-		++str;
+		if (*(str) == '_')
+		{
+			++str;
+			*str -= 32;
+		}
+		write(1, str++, 1);
 	}
-	return (0);
 }
 
-size_t	ft_strspn(const char *str, const char *accept)
+int	main(int ac, char **av)
 {
-	size_t	i = 0;
-
-	while (str[i])
-	{
-		if (ft_strchr(accept, str[i]) == 0)
-			break;
-		++i;
-	}
-	return (i);
+	if (ac == 2)
+		snake(av[1]);
+	write(1, "\n", 1);
+	return (0);
 }
