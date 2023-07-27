@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-void	ft_put_s(char *str, int *len)
+int	*put_s(char *str, int *len)
 {
 	if (!str)
 		str = "(null)";
@@ -10,9 +10,10 @@ void	ft_put_s(char *str, int *len)
 		*len += write(1, str, 1);
 		++str;
 	}
+	return (len);
 }
 
-void	ft_put_d(long long int num, int base, int *len)
+int	*put_d(long long int num, int base, int *len)
 {
 	char	*out = "0123456789abcdef";
 	if (num < 0)
@@ -21,34 +22,33 @@ void	ft_put_d(long long int num, int base, int *len)
 		*len += write(1, "-", 1);
 	}
 	if (num >= base)
-		ft_put_d(num / base, base, len);
+		put_d(num / base, base, len);
 	*len += write(1, &out[num % base], 1);
+	return (len);
 }
 
-int	ft_printf(const char *form, ... )
+int	ft_printf(const char *ar, ...)
 {
 	va_list	p;
-	int		len;
-	int		i;
+	int	len = 0;
+	int	i = 0;
 
-	len = 0;
-	i = 0;
-	va_start(p, form);
-	while(form[i])
+	va_start(p, ar);
+	while (ar[i])
 	{
-		if (form[i] == '%' && (form[i + 1] == 's' || form[i + 1] == 'd' || form[i + 1] == 'x'))
+		if (ar[i] == '%' && (ar[i + 1] == 's' || ar[i + 1] == 'd' || ar[i + 1] == 'x'))
 		{
 			++i;
-			if (form[i] == 's')
-				ft_put_s(va_arg(p, char *), &len);
-			else if (form[i] == 'd')
-				ft_put_d((long long int)va_arg(p, int), 10, &len);
-			else if (form[i] == 'p')
-				ft_put_d((long long int)va_arg(p, unsigned int), 16, &len);
+			if (ar[i] == 's')
+				put_s(va_arg(p, char *), &len);
+			else if (ar[i] == 'd')
+				put_d((long long int)va_arg(p, int), 10, &len);
+			else if (ar[i] == 'x')
+				put_d((long long int)va_arg(p, unsigned int), 16, &len);
 		}
 		else
-			len += write(1, &form[i], 1);
-		i++;
+			len += write(1, &ar[i], 1);
+		++i;
 	}
 	va_end(p);
 	return (len);
@@ -56,5 +56,5 @@ int	ft_printf(const char *form, ... )
 
 int	main(void)
 {
-	ft_printf("the word is: %s", "hello there");
+	ft_printf("%d\n", ft_printf("hi there %s", "General Kenobi"));
 }
